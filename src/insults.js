@@ -14,7 +14,7 @@ const BUCKETS = {
     "I [hope] you get [hit] in your [sex_anat][you_blank].",
     "a thousand (p)[sex_anat] upon [your_face].",
     "you are (s)[walking] [anat].",
-    "you are worth less than (s)[worthless_thing][you_blank]."
+    "you are worth less than (s)[worthless_thing][you_blank].",
   ],
   bad_thing_happens_to_you: [
     "[you_get] [disease]",
@@ -25,19 +25,19 @@ const BUCKETS = {
     "[you_get] [crucified]",
     "[you_get] [hanged]",
     "[you_get] [stoned_to_death]",
-    "[you_get] skinned alive"
+    "[you_get] skinned alive",
   ],
   bad_thing_happens_to_you_2: [
     "[you_get] [slapped]",
     "you spontaneously combust",
     "your [relative] has an affair with your [relative]",
-    "[you_get] stabbed with (s)[dirty] [knife]"
+    "[you_get] stabbed with (s)[dirty] [knife]",
   ],
   animal_excrement: [
     "[animal] [excrement]",
     "fresh [animal] [excrement]",
     "a piece of [animal] [excrement]",
-    "a piece of fresh [animal] [excrement]"
+    "a piece of fresh [animal] [excrement]",
   ],
   knife: ["knife","knife","pitchfork","fork"],
   dirty: ["dirty","rusty","AIDS-infected"],
@@ -71,14 +71,14 @@ const BUCKETS = {
     "sun burn",
     "athlete's foot",
     "bad breath",
-    "frizzy hair"
+    "frizzy hair",
   ],
   adj: [
     "[compound_adj]",
     "[single_word_adj]",
     "[single_word_adj], [compound_adj]",
     "[compound_adj], [compound_adj]",
-    "[single_word_adj], [single_word_adj]"
+    "[single_word_adj], [single_word_adj]",
   ],
   compound_adj: [
     "[smelly_noun]-sucking",
@@ -88,7 +88,7 @@ const BUCKETS = {
     "[excrement]-stained",
     "[animal]-(v)[fuck]",
     "[disease]-ridden",
-    "[animal]-infested"
+    "[animal]-infested",
   ],
   single_word_adj: [
     "bloody",
@@ -116,7 +116,7 @@ const BUCKETS = {
     "slack-jawed",
     "ugly",
     "vulgar",
-    "worthless"
+    "worthless",
   ],
   noun: [
     "[anat]",
@@ -135,7 +135,7 @@ const BUCKETS = {
     "[animal]-(n)[fuck]",
     "[fruit]-[sex_anat]",
     "[excrement]-stain",
-    "[sex_anat]-monster"
+    "[sex_anat]-monster",
   ],
   fluid_container: ["[fluid]-[container]","[container] of [fluid]"],
   container: ["bag","sack","bucket"],
@@ -168,7 +168,7 @@ const BUCKETS = {
     "pig",
     "rat",
     "skunk",
-    "warthog"
+    "warthog",
   ],
   fuck: ["fist","fuck","hump","molest","slap","violate"],
   excrement: ["[feces]","[semen]","[urine]","[vomit]","douche"],
@@ -193,7 +193,7 @@ const BUCKETS = {
     "[animal]'s [excrement]",
     "canker sore",
     "used condom",
-    "[feces]-stained rock"
+    "[feces]-stained rock",
   ],
   rains: ["rains", "hails", "smells like [smelly_noun]"],
   nice_day: ["wedding day", "anniversary", "birthday"],
@@ -204,10 +204,10 @@ const BUCKETS = {
     "you get [hiccups]",
     "(s)[fly] [flies_in_your_eye]",
     "stub your toe",
-    "lose your keys"
+    "lose your keys",
   ],
   fly: ["mosquito", "gnat", "bee"],
-  flies_in_your_eye: ["lands on your eye", "lands in your ear", "flies up your butt"]
+  flies_in_your_eye: ["lands on your eye", "lands in your ear", "flies up your butt"],
 };
 
 const isVowel = letter => VOWELS.some(function(vowel) { return vowel === letter; });
