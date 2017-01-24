@@ -1,3 +1,12 @@
 import getInsult from "./insults";
 
-document.getElementById("root").textContent = getInsult();
+const insultContainer = document.getElementById("insult");
+const moreButton = document.getElementById("more");
+
+const showInsult = () => {
+  insultContainer.textContent = getInsult();
+};
+
+showInsult();
+
+moreButton.addEventListener("click", showInsult);
