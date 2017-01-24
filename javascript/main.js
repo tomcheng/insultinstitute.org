@@ -304,4 +304,3 @@
     return VOWELS.some(function(vowel) { return vowel === letter; });
   }
 })();
-
