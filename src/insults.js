@@ -12,9 +12,11 @@ const BUCKETS = {
     "I hope you get [hit] in the [sex_anat][you_blank].",
     "a thousand (p)[sex_anat] upon [your_face].",
     "you are (s)[walking] [anat].",
-    "you are worth less than (s)[worthless_thing][you_blank].",
+    "you are (s)[worthless_thing][you_blank].",
     "[your_or_your_relatives] [body_part_or_parts_are_ugly].",
     "[noun].",
+    "you [walk] like (s)[animal][you_blank].",
+    "I [hate] your [animal]-[body_part_or_body_parts]."
   ],
   your_or_your_relatives: ["your", "your [relative]'s"],
   body_part_or_parts_are_ugly: ["[body_part] is [ugly]", "[body_parts] are [ugly]"],
@@ -34,6 +36,7 @@ const BUCKETS = {
     "[you_get] stabbed with (s)[dirty] [knife]",
     "your [relative] marries a [racist]",
     "you lose your job",
+    "marry the wrong person",
   ],
   animal_excrement: [
     "[animal] [excrement]",
@@ -106,6 +109,7 @@ const BUCKETS = {
     "half-witted",
     "insignificant",
     "insecure",
+    "meat-headed",
     "miserable",
     "pathetic",
     "puerile",
@@ -133,6 +137,8 @@ const BUCKETS = {
     "[fruit]-[sex_anat]",
     "[excrement]-stain",
     "[sex_anat]-monster",
+    "miscreant",
+    "troglodyte",
   ],
   fluid_container: ["[fluid]-[container]","[container] of [fluid]"],
   container: ["bag","sack","bucket","bowl"],
@@ -146,7 +152,6 @@ const BUCKETS = {
     "alligator",
     "ape",
     "baboon",
-    "bear",
     "camel",
     "chicken",
     "chimpanzee",
@@ -156,6 +161,7 @@ const BUCKETS = {
     "dog",
     "donkey",
     "elephant",
+    "fish",
     "goat",
     "hippo",
     "horse",
@@ -180,7 +186,7 @@ const BUCKETS = {
   raped: ["eaten","banged","fucked","humped","violated"],
   pack: ["group","family","pack","swarm"],
   fruit: ["banana","lemon","mango","kiwi","cheese"],
-  food: ["burger","sandwich","cake"],
+  food: ["burger","sandwich","cake","biscuit"],
   small_object: ["[fruit]","[small_animal]"],
   small_animal: ["rat","gerbil","hamster","kitten","insect","maggot"],
   worthless_thing: [
@@ -193,7 +199,7 @@ const BUCKETS = {
     "[feces]-stained rock",
     "[container] of [animal] [urine]",
   ],
-  nice_day: ["wedding day", "anniversary", "birthday"],
+  nice_day: ["wedding day","anniversary","birthday"],
   walking: ["walking", "talking"],
   die: ["die", "fall down a set of stairs", "run into a wall", "walk into oncoming traffic"],
   mildly_bad_thing_happens: [
@@ -233,11 +239,14 @@ const BUCKETS = {
     "arms",
     "legs",
   ],
+  body_part_or_body_parts: ["[body_part]", "[body_parts]"],
+  walk: ["walk","smell","look"],
+  hate: ["hate","loathe","despise","detest"],
 };
 
 const isVowel = letter => VOWELS.some(function(vowel) { return vowel === letter; });
 
-const beginsWithVowel = str => isVowel(str[0].toLowerCase());
+const beginsWithVowel = str => isVowel(str[0].toLowerCase()) && str.slice(0,3) !== "use";
 
 const endsWithS = str => str[str.length - 1] === "s";
 

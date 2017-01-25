@@ -4,7 +4,7 @@
   "private": true,
   "description": "",
   "main": "index.js",
-  "homepage": "https://tomcheng.github.io/insultinstitute.org",
+  "homepage": "http://insultinstitute.org",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
