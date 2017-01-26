@@ -7,18 +7,19 @@ const BUCKETS = {
     "I hope [bad_thing_happens_to_you_3][you_blank].",
     "your [relative] (p)[hate] you[you_blank].",
     "[you_smell] like [animal_excrement].",
-    "[you_are] (s)[adj] [noun].",
     "[you_are] (s)[noun].",
+    "[you_are] (s)[adj] [noun].",
+    "[you_are] (s)[noun], (s)[adj] [noun].",
     "[you_are] (s)[noun] and your [relative] is (s)[noun].",
+    "[noun].",
     "I hope you get [hit] in the [sex_anat][you_blank].",
     "a thousand (p)[sex_anat] upon [your_face].",
     "you are (s)[walking] [anat].",
     "[your_or_your_relatives] [body_part_or_parts_are_ugly].",
-    "[noun].",
     "you [walk] like (s)[animal][you_blank].",
     "I [hate] your [animal]-[body_part_or_body_parts].",
     "my, what [ugly_body_part_or_parts] you have!",
-    "on [certain_day] you [doing_something_embarrassing][maybe_while_your_relative_watches]."
+    "on [certain_day] you [doing_something_embarrassing][maybe_while_your_relative_watches].",
   ],
   your_or_your_relatives: ["your", "your [relative]'s"],
   body_part_or_parts_are_ugly: ["[body_part] is [ugly]", "[body_parts] are [ugly]"],
@@ -319,8 +320,8 @@ const secondLastLetterIsVowel = str => isVowel(str[str.length - 2]) && !["eat","
 
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const replacePatternWithModifier = (_, modifier, bucketName) => {
-  let output = select(bucketName);
+export const applyModifier = (phrase, modifier) => {
+  let output = phrase;
 
   switch (modifier) {
     case "s":
@@ -360,6 +361,8 @@ const replacePatternWithModifier = (_, modifier, bucketName) => {
 
   return output;
 };
+
+const replacePatternWithModifier = (_, modifier, bucketName) => applyModifier(select(bucketName), modifier);
 
 const replaceSimplePattern = (_, bucketName) => select(bucketName);
 
