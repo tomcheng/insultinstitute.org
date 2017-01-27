@@ -1,31 +1,34 @@
-import { applyModifier } from "./insults";
+import { ingify, addIndefiniteArticle, capitalize, pluralize, nounify } from "./insults";
 
 it("capitalizes", () => {
-  expect(applyModifier("foo", "c")).toBe("Foo");
+  expect(capitalize("foo")).toBe("Foo");
 });
 
 it("adds an indefinite article", () => {
-  expect(applyModifier("foo", "s")).toBe("a foo");
-  expect(applyModifier("ant", "s")).toBe("an ant");
-  expect(applyModifier("use", "s")).toBe("a use");
+  expect(addIndefiniteArticle("foo")).toBe("a foo");
+  expect(addIndefiniteArticle("ant")).toBe("an ant");
+  expect(addIndefiniteArticle("use")).toBe("a use");
 });
 
 it("pluralizes", () => {
-  expect(applyModifier("foo", "p")).toBe("foos");
-  expect(applyModifier("fish", "p")).toBe("fishes");
-  expect(applyModifier("case", "p")).toBe("cases");
+  expect(pluralize("foo")).toBe("foos");
+  expect(pluralize("fish")).toBe("fishes");
+  expect(pluralize("case")).toBe("cases");
 });
 
-it("turns words to doer nouns", () => {
-  expect(applyModifier("guzzle", "n")).toBe("guzzler");
-  expect(applyModifier("eat", "n")).toBe("eater");
-  expect(applyModifier("fist", "n")).toBe("fister");
-  expect(applyModifier("slap", "n")).toBe("slapper");
+it("turns verbs to nouns", () => {
+  expect(nounify("guzzle")).toBe("guzzler");
+  expect(nounify("eat")).toBe("eater");
+  expect(nounify("fist")).toBe("fister");
+  expect(nounify("slap")).toBe("slapper");
+  expect(nounify("poop")).toBe("pooper");
+  expect(nounify("violate")).toBe("violator");
+  expect(nounify("shit")).toBe("shitter");
 });
 
 it("turns words to -ing verbs", () => {
-  expect(applyModifier("guzzle", "v")).toBe("guzzling");
-  expect(applyModifier("eat", "v")).toBe("eating");
-  expect(applyModifier("fist", "v")).toBe("fisting");
-  expect(applyModifier("slap", "v")).toBe("slapping");
+  expect(ingify("guzzle")).toBe("guzzling");
+  expect(ingify("eat")).toBe("eating");
+  expect(ingify("fist")).toBe("fisting");
+  expect(ingify("slap")).toBe("slapping");
 });

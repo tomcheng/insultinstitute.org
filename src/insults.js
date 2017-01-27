@@ -1,62 +1,87 @@
 import buckets from "./buckets";
 
-const VOWELS = ["a","e","i","o","u"];
-
-const isVowel = letter => VOWELS.some(function(vowel) { return vowel === letter; });
-
-const beginsWithVowel = str => isVowel(str[0].toLowerCase()) && str.slice(0,3) !== "use";
-
-const endsWithS = str => str[str.length - 1] === "s";
-
-const endsWithVowel = str => isVowel(str[str.length - 1]);
-
-const secondLastLetterIsVowel = str => isVowel(str[str.length - 2]) && !["eat","poop"].includes(str);
+const isVowel = letter => ["a","e","i","o","u"].includes(letter.toLowerCase());
 
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-export const applyModifier = (phrase, modifier) => {
-  let output = phrase;
+export const addIndefiniteArticle = str => {
+  if (str.slice(0,3) === "use") {
+    return "a " + str;
+  }
+
+  if (isVowel(str[0])) {
+    return "an " + str;
+  }
+
+  return "a " + str;
+};
+
+export const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+export const pluralize = str => {
+  if (str.slice(-1) === "s") {
+    return str + "es";
+  }
+  if (str.slice(-2) === "sh") {
+    return str + "es";
+  }
+  return str + "s";
+};
+
+export const nounify = str => {
+  if (str.slice(-3) === "ate") {
+    return str.slice(0, str.length - 1) + "or";
+  }
+
+  if (isVowel(str.slice(-1))) {
+    return str + "r";
+  }
+
+  if (isVowel(str[str.length - 2]) && isVowel(str[str.length - 3])) {
+    return str + "er";
+  }
+
+  if (isVowel(str[str.length - 2])) {
+    return str + str.slice(-1) + "er";
+  }
+
+  return str + "er";
+};
+
+export const ingify = str => {
+  if (isVowel(str.slice(-1))) {
+    return str.slice(0, str.length - 1) + "ing";
+  }
+
+  if (isVowel(str[str.length - 2]) && isVowel(str[str.length - 3])) {
+    return str + "ing";
+  }
+
+  if (isVowel(str[str.length - 2])) {
+    return str + str.slice(-1) + "ing";
+  }
+
+  return str + "ing";
+};
+
+const replacePatternWithModifier = (_, modifier, bucketName) => {
+  const phrase = select(bucketName);
 
   switch (modifier) {
     case "s":
-      output = beginsWithVowel(output)
-        ? "an " + output
-        : "a " + output;
-      break;
+      return addIndefiniteArticle(phrase);
     case "c":
-      output = output[0].toUpperCase() + output.slice(1);
-      break;
+      return capitalize(phrase);
     case "p":
-      output = endsWithS(output) || output === "fish"
-        ? output + "es"
-        : output + "s";
-      break;
+      return pluralize(phrase);
     case "n":
-      if (endsWithVowel(output)) {
-        output += "r";
-      } else if (secondLastLetterIsVowel(output)) {
-        output += output[output.length - 1] + "er";
-      } else {
-        output += "er";
-      }
-      break;
+      return nounify(phrase);
     case "v":
-      if (endsWithVowel(output)) {
-        output = output.slice(0, output.length - 1) + "ing";
-      } else if (secondLastLetterIsVowel(output)) {
-        output += output[output.length - 1] + "ing";
-      } else {
-        output += "ing";
-      }
-      break;
+      return ingify(phrase);
     default:
-      break;
+      return phrase;
   }
-
-  return output;
 };
-
-const replacePatternWithModifier = (_, modifier, bucketName) => applyModifier(select(bucketName), modifier);
 
 const replaceSimplePattern = (_, bucketName) => select(bucketName);
 
@@ -68,16 +93,15 @@ function parse(str) {
 
 function select(bucketName) {
   const bucket = buckets[bucketName];
-  const index = getRandomNumber(0, bucket.length - 1);
-  const string = bucket[index];
+  const phrase = bucket[getRandomNumber(0, bucket.length - 1)];
 
-  return parse(string);
+  return parse(phrase);
 }
 
 const getInsult = () => {
   const output = select("insults").replace("'", "’");
 
-  return output[0].toUpperCase() + output.slice(1);
+  return capitalize(output);
 };
 
 export default getInsult;
