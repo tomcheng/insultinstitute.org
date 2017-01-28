@@ -1,11 +1,11 @@
-import buckets from "./buckets";
+import importedBuckets from "./buckets";
 
 const isVowel = letter => ["a","e","i","o","u"].includes(letter.toLowerCase());
 
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 export const addIndefiniteArticle = str => {
-  if (str.slice(0,3) === "use") {
+  if (str.match(/^(use|urin)/)) {
     return "a " + str;
   }
 
@@ -64,8 +64,8 @@ export const ingify = str => {
   return str + "ing";
 };
 
-const replacePatternWithModifier = (_, modifier, bucketName) => {
-  const phrase = select(bucketName);
+const replacePatternWithModifier = buckets => (_, modifier, bucketName) => {
+  const phrase = select(bucketName, buckets);
 
   switch (modifier) {
     case "s":
@@ -83,23 +83,32 @@ const replacePatternWithModifier = (_, modifier, bucketName) => {
   }
 };
 
-const replaceSimplePattern = (_, bucketName) => select(bucketName);
+const replaceSimplePattern = buckets => (_, bucketName) => select(bucketName, buckets);
 
-function parse(str) {
-  return str
-    .replace(/\((.)\)\[(.*?)]/g, replacePatternWithModifier)
-    .replace(/\[(.*?)]/g, replaceSimplePattern);
+function parse(str, buckets) {
+  let output = str;
+  const repeatingMatch = str.match(/r{(.*?)}/);
+
+  if (repeatingMatch) {
+    const phrase = parse(repeatingMatch[1], buckets);
+
+    output = output.replace(/r{.*?}/g, phrase);
+  }
+
+  return output
+    .replace(/\((.)\)\[(.*?)]/g, replacePatternWithModifier(buckets))
+    .replace(/\[(.*?)]/g, replaceSimplePattern(buckets));
 }
 
-function select(bucketName) {
+function select(bucketName, buckets) {
   const bucket = buckets[bucketName];
   const phrase = bucket[getRandomNumber(0, bucket.length - 1)];
 
-  return parse(phrase);
+  return parse(phrase, buckets);
 }
 
-const getInsult = () => {
-  const output = select("insults").replace("'", "’");
+const getInsult = (buckets = importedBuckets) => {
+  const output = select("insults", buckets).replace("'", "’");
 
   return capitalize(output);
 };

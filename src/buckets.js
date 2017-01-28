@@ -19,11 +19,14 @@ const buckets = {
     "I [hate] your [animal]-[body_part_or_body_parts].",
     "my, what [ugly_body_part_or_parts] you have!",
     "on [certain_day] you [doing_something_embarrassing][maybe_while_your_relative_watches].",
+    "between you and r{(s)[adj] [noun]}, I'd rather be r{(s)[adj] [noun]}.",
+    "your [hygiene] is [atrocious][you_blank].",
+    "your [body_parts] are [ugly], your [body_part] is [ugly], and you smell like (s)[smelly_noun].",
   ],
   your_or_your_relatives: ["your","your [relative]'s"],
   body_part_or_parts_are_ugly: ["[body_part] is [ugly]","[body_parts] are [ugly]"],
   bad_thing_happens_to_you: [
-    "it smells like [smelly_noun] on your [nice_day]",
+    "it smells like (s)[smelly_noun] on your [nice_day]",
     "[you_get] [disease]",
     "[you_get] [hiccups]",
     "your child grows up (s)[adj] [noun]",
@@ -112,7 +115,7 @@ const buckets = {
     "[single_word_adj], [compound_adj]",
   ],
   compound_adj: [
-    "[smelly_noun]-sucking",
+    "[penis]-sucking",
     "[fluid]-(v)[guzzle]",
     "[feces]-(v)[eat]",
     "[excrement]-stained",
@@ -166,7 +169,6 @@ const buckets = {
     "troglodyte",
     "paper cut",
     "canker sore",
-    "used condom",
     "dildo",
     "slut",
     "[racist]",
@@ -175,7 +177,7 @@ const buckets = {
   container: ["bag","sack","bucket","bowl"],
   buffoon: ["buffoon","moron","nincompoop","idiot","loser","dummy"],
   anatomy: ["[penis]","[pubic_hair]","[anus]","canker","pustule","wart","ovary","tit","testicle"],
-  smelly_noun: ["[penis]","[anus]","[fluid]","[feces]","fart","armpit"],
+  smelly_noun: ["[penis]","[anus]","[feces]","fart","armpit"],
   sex_anatomy: ["[penis]","[anus]"],
   anus: ["anus","ass","rectum","butt"],
   penis: ["cock","dick","penis","dong"],
@@ -227,6 +229,7 @@ const buckets = {
   fly: ["mosquito", "gnat", "bee"],
   flies_in_your_eye: ["lands on your eye", "lands in your ear", "flies up your butt", "flies in your mouth"],
   ugly: [
+    "atrocious",
     "sub-par",
     "vomit-inducing",
     "disgusting",
@@ -268,7 +271,7 @@ const buckets = {
   doing_something_embarrassing: [
     "[feces_verb] on (p)[animal]",
     "expose yourself to children",
-    "sniff [smelly_noun]",
+    "sniff (s)[smelly_noun]",
     "bathe in [fluid]",
     "drink [animal] [urine]",
     "eat [animal] [feces]",
@@ -293,7 +296,20 @@ const buckets = {
     "President's Day",
     "Memorial Day",
     "Labour Day",
-  ]
+  ],
+  hygiene: [
+    "personal hygiene",
+    "oral hygiene",
+    "hygiene",
+  ],
+  atrocious: [
+    "terrible",
+    "horrendous",
+    "atrocious",
+    "sub-par",
+    "not good",
+    "disgusting",
+  ],
 };
 
 export default buckets;

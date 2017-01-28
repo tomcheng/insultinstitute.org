@@ -1,4 +1,4 @@
-import { ingify, addIndefiniteArticle, capitalize, pluralize, nounify } from "./insults";
+import getInsult, { ingify, addIndefiniteArticle, capitalize, pluralize, nounify } from "./insults";
 
 it("capitalizes", () => {
   expect(capitalize("foo")).toBe("Foo");
@@ -8,6 +8,8 @@ it("adds an indefinite article", () => {
   expect(addIndefiniteArticle("foo")).toBe("a foo");
   expect(addIndefiniteArticle("ant")).toBe("an ant");
   expect(addIndefiniteArticle("use")).toBe("a use");
+  expect(addIndefiniteArticle("urine")).toBe("a urine");
+  expect(addIndefiniteArticle("ump")).toBe("an ump");
 });
 
 it("pluralizes", () => {
@@ -31,4 +33,22 @@ it("turns words to -ing verbs", () => {
   expect(ingify("eat")).toBe("eating");
   expect(ingify("fist")).toBe("fisting");
   expect(ingify("slap")).toBe("slapping");
+});
+
+it("gets an insult", () => {
+  expect(getInsult({ insults: ["foo"] })).toBe("Foo");
+});
+
+it("repeats a phrase", () => {
+  const insult = getInsult({ insults: ["r{(s)[thing]} is r{(s)[thing]}"], thing: ["a","b","c","d","e"] });
+  const possibilities = [
+    "An a is an a",
+    "A b is a b",
+    "A c is a c",
+    "A d is a d",
+    "An e is an e",
+  ];
+
+  console.log(insult);
+  expect(possibilities.includes(insult)).toBe(true);
 });
