@@ -1,0 +1,16 @@
+{
+  "short_name": "Insults",
+  "name": "Insults",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#4774b5",
+  "theme_color": "#4774b5",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
