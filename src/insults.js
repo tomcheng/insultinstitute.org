@@ -2,7 +2,10 @@ import importedBuckets from "./buckets";
 
 const isVowel = letter => ["a","e","i","o","u"].includes(letter.toLowerCase());
 
-const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const randomElement = arr => {
+  const index = Math.floor(Math.random() * arr.length);
+  return arr[index];
+};
 
 export const addIndefiniteArticle = str => {
   if (str.match(/^(use|urin)/)) {
@@ -101,8 +104,7 @@ function parse(str, buckets) {
 }
 
 function select(bucketName, buckets) {
-  const bucket = buckets[bucketName];
-  const phrase = bucket[getRandomNumber(0, bucket.length - 1)];
+  const phrase = randomElement(buckets[bucketName]);
 
   return parse(phrase, buckets);
 }
