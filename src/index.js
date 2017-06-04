@@ -4,7 +4,10 @@ const insultContainer = document.getElementById("insult");
 const moreButton = document.getElementById("more");
 
 const showInsult = () => {
-  insultContainer.innerHTML = getInsult().replace(/\s(?=[^\s]{1,5}$)/g, "&nbsp;").replace(/-/g, "&#8209;");
+  insultContainer.innerHTML = getInsult()
+    .replace(/'/g, "’")
+    .replace(/\s(?=[^\s]{1,5}$)/g, "&nbsp;")
+    .replace(/-/g, "&#8209;");
 };
 
 showInsult();

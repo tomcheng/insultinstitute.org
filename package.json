@@ -18,6 +18,6 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
-    "insults": "^0.1.0"
+    "insults": "0.1.2"
   }
 }
