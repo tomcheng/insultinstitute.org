@@ -1,4 +1,4 @@
-import getInsult from "./insults";
+import getInsult from "insults";
 
 const insultContainer = document.getElementById("insult");
 const moreButton = document.getElementById("more");
