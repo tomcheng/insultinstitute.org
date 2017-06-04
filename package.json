@@ -14,8 +14,8 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "gh-pages": "^0.12.0",
-    "react-scripts": "0.8.5"
+    "gh-pages": "1.0.0",
+    "react-scripts": "1.0.7"
   },
   "dependencies": {
     "insults": "0.1.3"
